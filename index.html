@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jhoanna Abris Maslog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 2px
+        }
+
+        body {
+            background: #000;
+            color: #e8e8e8;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-x: hidden
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 60px;
+            border-bottom: 1px solid transparent;
+            transition: border-color .3s, background .3s, backdrop-filter .3s
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, .55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-color: rgba(255, 255, 255, .06)
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            height: 100%;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -.02em
+        }
+
+        .logo span {
+            color: #3b82f6
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-size: .72rem;
+            font-weight: 500;
+            color: #555;
+            text-decoration: none;
+            letter-spacing: .06em;
+            transition: color .2s;
+            position: relative;
+            padding-bottom: 2px
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #3b82f6;
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .25s
+        }
+
+        .nav-links a:hover {
+            color: #ccc
+        }
+
+        .nav-links a.active {
+            color: #fff
+        }
+
+        .nav-links a.active::after {
+            transform: scaleX(1)
+        }
+
+        .nav-dot {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .65rem;
+            font-weight: 600;
+            color: #444;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .dot-green {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: blink 2s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            padding: 6px;
+            cursor: pointer;
+            background: none;
+            border: none
+        }
+
+        .hamburger span {
+            display: block;
+            height: 2px;
+            background: #888;
+            border-radius: 2px;
+            transition: transform .25s, opacity .25s, width .25s
+        }
+
+        .hamburger span:nth-child(2) {
+            width: 70%;
+            margin-left: auto
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            width: 0
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 199;
+            background: rgba(8, 8, 8, .92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            padding: 1.5rem 2rem 2rem;
+            transform: translateY(-8px);
+            opacity: 0;
+            transition: transform .25s ease, opacity .25s ease;
+            pointer-events: none
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .25rem
+        }
+
+        .mobile-menu ul a {
+            display: block;
+            padding: .75rem 0;
+            font-size: .9rem;
+            font-weight: 600;
+            color: #666;
+            text-decoration: none;
+            border-bottom: 1px solid #111;
+            letter-spacing: .04em;
+            transition: color .2s
+        }
+
+        .mobile-menu ul a:hover,
+        .mobile-menu ul a.active {
+            color: #fff
+        }
+
+        .mobile-menu ul a.active {
+            color: #3b82f6
+        }
+
+        .mobile-menu-footer {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            width: 100%
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #111;
+            margin: 0
+        }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 7rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #111
+        }
+
+        .hero-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem
+        }
+
+        .hero-noise {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+            background-repeat: repeat
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, .12) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 1
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .35rem 1rem;
+            background: #111;
+            border: 1px solid #222;
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 2rem;
+            border-radius: 999px
+        }
+
+        .hero-badge span {
+            color: #3b82f6
+        }
+
+        h1.hero-headline {
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -.04em;
+            color: #fff;
+            margin-bottom: 1.6rem
+        }
+
+        h1.hero-headline .blue {
+            color: #3b82f6
+        }
+
+        h1.hero-headline .italic {
+            font-style: italic
+        }
+
+        .hero-sub {
+            font-size: .9rem;
+            font-weight: 400;
+            color: #555;
+            line-height: 1.8;
+            max-width: 420px;
+            margin-bottom: 2.5rem
+        }
+
+        .hero-sub strong {
+            color: #999;
+            font-weight: 600
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap
+        }
+
+        .btn-blue {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .75rem 1.6rem;
+            background: #2563eb;
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background .2s, transform .15s;
+            border-radius: 10px
+        }
+
+        .btn-blue:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px)
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .75rem 1.6rem;
+            background: transparent;
+            border: 1px solid #222;
+            color: #666;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: border-color .2s, color .2s, transform .15s;
+            border-radius: 10px
+        }
+
+        .btn-ghost:hover {
+            border-color: #444;
+            color: #aaa;
+            transform: translateY(-1px)
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center
+        }
+
+        .photo-card {
+            width: 100%;
+            max-width: 400px;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            overflow: hidden;
+            position: relative;
+            border-radius: 16px
+        }
+
+        .photo-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .8rem 1rem;
+            border-bottom: 1px solid #1a1a1a
+        }
+
+        .card-dots {
+            display: flex;
+            gap: .4rem
+        }
+
+        .card-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #222
+        }
+
+        .card-dots span:first-child {
+            background: #2563eb
+        }
+
+        .card-label {
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #333
+        }
+
+        .photo-img-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5
+        }
+
+        .photo-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%) contrast(1.08) brightness(.95);
+            transition: transform .6s ease, filter .5s;
+            display: block
+        }
+
+        .photo-card:hover .photo-img-wrap img {
+            transform: scale(1.04);
+            filter: grayscale(0%) contrast(1.1)
+        }
+
+        .photo-card-bottom {
+            padding: 1.2rem 1rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .photo-name {
+            font-size: .85rem;
+            font-weight: 800;
+            color: #fff
+        }
+
+        .photo-role {
+            font-size: .65rem;
+            font-weight: 500;
+            color: #3b82f6;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .photo-status {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .6rem;
+            font-weight: 600;
+            color: #444
+        }
+
+        .photo-status .dot-green {
+            width: 5px;
+            height: 5px
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #111;
+            position: relative
+        }
+
+        .section-sm {
+            padding: 3.5rem 2rem
+        }
+
+        .sec-label {
+            display: inline-block;
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .26em;
+            text-transform: uppercase;
+            color: #3b82f6;
+            margin-bottom: .8rem;
+            background: rgba(37, 99, 235, .08);
+            border: 1px solid rgba(37, 99, 235, .2);
+            padding: .2rem .65rem;
+            border-radius: 999px
+        }
+
+        h2.big {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -.04em;
+            color: #fff;
+            margin-bottom: 1rem
+        }
+
+        h2.big .blue {
+            color: #3b82f6
+        }
+
+        h2.big .italic {
+            font-style: italic
+        }
+
+        .sec-body {
+            font-size: .88rem;
+            font-weight: 400;
+            color: #555;
+            line-height: 1.85;
+            max-width: 540px
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start
+        }
+
+        .info-rows {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid #1a1a1a;
+            background: #0d0d0d;
+            border-radius: 10px;
+            transition: border-color .2s
+        }
+
+        .info-row:hover {
+            border-color: #252525
+        }
+
+        .row-key {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #333;
+            min-width: 80px;
+            padding-top: .1rem
+        }
+
+        .row-val {
+            font-size: .85rem;
+            font-weight: 500;
+            color: #bbb
+        }
+
+        .row-val a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color .2s
+        }
+
+        .row-val a:hover {
+            color: #3b82f6
+        }
+
+        .row-val .highlight {
+            color: #3b82f6;
+            font-weight: 700
+        }
+
+        .feature-row {
+            padding: 4rem 2rem;
+            border-bottom: 1px solid #111
+        }
+
+        .feature-row>.wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 5rem
+        }
+
+        .feature-row.flip>.wrap {
+            direction: rtl
+        }
+
+        .feature-row.flip>.wrap>* {
+            direction: ltr
+        }
+
+        .feature-num {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            color: #333;
+            margin-bottom: 1rem
+        }
+
+        h3.feat-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.03em;
+            line-height: 1.15;
+            margin-bottom: .8rem
+        }
+
+        h3.feat-title .blue {
+            color: #3b82f6
+        }
+
+        .feat-body {
+            font-size: .82rem;
+            font-weight: 400;
+            color: #555;
+            line-height: 1.85
+        }
+
+        .feat-visual {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px
+        }
+
+        .feat-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37, 99, 235, .06) 0%, transparent 60%);
+            border-radius: 14px
+        }
+
+        .tools-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            padding: 2rem;
+            border-bottom: 1px solid #111;
+            background: #000
+        }
+
+        .tool-pill {
+            padding: .35rem .85rem;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            font-size: .68rem;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: .06em;
+            transition: all .2s;
+            cursor: default;
+            border-radius: 999px
+        }
+
+        .tool-pill:hover {
+            border-color: #2563eb;
+            color: #60a5fa;
+            background: #0a0f1a
+        }
+
+        /* ── Document list ── */
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem
+        }
+
+        .doc-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.1rem 1.4rem;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background .2s, border-color .2s
+        }
+
+        .doc-item:hover {
+            background: #101010;
+            border-color: #252525
+        }
+
+        .doc-tag {
+            width: 80px;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: .2rem .6rem;
+            border-radius: 999px;
+            background: rgba(10, 10, 10, .55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(37, 99, 235, .35);
+            color: #60a5fa;
+            white-space: nowrap
+        }
+
+        .doc-title {
+            font-size: .88rem;
+            font-weight: 700;
+            color: #ddd;
+            line-height: 1.4
+        }
+
+        .doc-sub {
+            font-size: .65rem;
+            font-weight: 500;
+            color: #444;
+            margin-top: .2rem;
+            letter-spacing: .04em
+        }
+
+        .doc-arrow {
+            color: #252525;
+            transition: color .2s, transform .2s
+        }
+
+        .doc-item:hover .doc-arrow {
+            color: #3b82f6;
+            transform: translateX(2px)
+        }
+
+        /* ── Certifications & Achievements ── */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem
+        }
+
+        .cert-card {
+            display: block;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .2s, transform .2s
+        }
+
+        .cert-card:hover {
+            border-color: #2a2a2a;
+            transform: translateY(-3px)
+        }
+
+        .cert-thumb {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #111
+        }
+
+        .cert-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s
+        }
+
+        .cert-card:hover .cert-thumb img {
+            transform: scale(1.05)
+        }
+
+        .cert-info {
+            padding: .8rem 1rem
+        }
+
+        .cert-title {
+            font-size: .75rem;
+            font-weight: 700;
+            color: #ccc;
+            line-height: 1.4
+        }
+
+        .cert-issuer {
+            font-size: .6rem;
+            font-weight: 500;
+            color: #444;
+            margin-top: .35rem;
+            letter-spacing: .06em;
+            text-transform: uppercase
+        }
+
+        /* ── Achievements ── */
+        .achieve-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem
+        }
+
+        .achieve-card {
+            display: block;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .2s, transform .2s
+        }
+
+        .achieve-card:hover {
+            border-color: #2a2a2a;
+            transform: translateY(-3px)
+        }
+
+        .achieve-thumb {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #111
+        }
+
+        .achieve-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s
+        }
+
+        .achieve-card:hover .achieve-thumb img {
+            transform: scale(1.05)
+        }
+
+        .achieve-info {
+            padding: .8rem 1rem
+        }
+
+        .achieve-title {
+            font-size: .82rem;
+            font-weight: 700;
+            color: #ccc;
+            line-height: 1.4
+        }
+
+        .achieve-meta {
+            font-size: .6rem;
+            font-weight: 500;
+            color: #444;
+            margin-top: .35rem;
+            letter-spacing: .06em;
+            text-transform: uppercase
+        }
+
+        /* ── Lightbox ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, .70);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center
+        }
+
+        #lightbox.open {
+            display: flex
+        }
+
+        #lightbox-img {
+            max-width: 90vw;
+            max-height: 88vh;
+            border-radius: 10px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, .8);
+            object-fit: contain;
+            display: block
+        }
+
+        #lightbox-close {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.4rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, color .2s;
+            line-height: 1;
+            z-index: 1001
+        }
+
+        #lightbox-close:hover {
+            background: #1a1a1a;
+            color: #fff
+        }
+
+        /* ── Projects ── */
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2.5rem
+        }
+
+        .project-card {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color .25s, transform .25s;
+            cursor: default
+        }
+
+        .project-card:hover {
+            border-color: #2a2a2a;
+            transform: translateY(-3px)
+        }
+
+        .project-thumb {
+            aspect-ratio: 16/10;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .project-thumb-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #222
+        }
+
+        .project-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, .4) 100%)
+        }
+
+        .proj-tag {
+            position: absolute;
+            top: .75rem;
+            left: .75rem;
+            z-index: 1;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: .3rem .7rem;
+            border-radius: 999px;
+            background: rgba(10, 10, 10, .55);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(147, 146, 146, 0.35);
+            -webkit-backdrop-filter: blur(20px);
+            color: #60a5fa
+        }
+
+        .project-body {
+            padding: 1.2rem 1.4rem 1.4rem
+        }
+
+        .project-title {
+            font-size: .95rem;
+            font-weight: 800;
+            color: #e0e0e0;
+            margin-bottom: .4rem;
+            letter-spacing: -.02em
+        }
+
+        .project-desc {
+            font-size: .75rem;
+            color: #444;
+            line-height: 1.7
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: .8rem;
+            border-top: 1px solid #141414
+        }
+
+        .project-tools {
+            display: flex;
+            gap: .4rem;
+            flex-wrap: wrap
+        }
+
+        .project-tool {
+            font-size: .58rem;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: .08em;
+            padding: .15rem .5rem;
+            border: 1px solid #1e1e1e;
+            border-radius: 999px
+        }
+
+        .project-link {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #111;
+            border: 1px solid #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            transition: color .2s, border-color .2s;
+            flex-shrink: 0
+        }
+
+        .project-card:hover .project-link {
+            color: #3b82f6;
+            border-color: #1e3a6e
+        }
+
+        footer {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #111
+        }
+
+        .ft-logo {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #222;
+            letter-spacing: -.02em
+        }
+
+        .ft-logo span {
+            color: #1d4ed8
+        }
+
+        .ft-copy {
+            font-size: .65rem;
+            font-weight: 500;
+            color: #2a2a2a;
+            letter-spacing: .08em
+        }
+
+        .ft-links {
+            display: flex;
+            gap: 1.5rem
+        }
+
+        .ft-links a {
+            font-size: .65rem;
+            font-weight: 600;
+            color: #2a2a2a;
+            text-decoration: none;
+            transition: color .2s
+        }
+
+        .ft-links a:hover {
+            color: #3b82f6
+        }
+
+        .r {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease
+        }
+
+        .r.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .r.d1 {
+            transition-delay: .07s
+        }
+
+        .r.d2 {
+            transition-delay: .15s
+        }
+
+        .r.d3 {
+            transition-delay: .23s
+        }
+
+        .r.d4 {
+            transition-delay: .31s
+        }
+
+        @media(max-width:860px) {
+            .nav-inner {
+                padding: 0 1.2rem
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .nav-dot {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            #hero {
+                padding: 5.5rem 1.2rem 3rem
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem
+            }
+
+            .hero-right {
+                display: none
+            }
+
+            .section,
+            .section-sm {
+                padding: 3.5rem 1.2rem
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2.5rem
+            }
+
+            .feature-row {
+                padding: 3rem 1.2rem
+            }
+
+            .feature-row>.wrap,
+            .feature-row.flip>.wrap {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                gap: 2rem
+            }
+
+            .tools-row {
+                padding: 1.5rem 1.2rem
+            }
+
+            .doc-item {
+                grid-template-columns: auto 1fr auto;
+                gap: .8rem
+            }
+
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .achieve-grid {
+                grid-template-columns: 1fr
+            }
+
+            footer {
+                padding: 1.5rem 1.2rem
+            }
+
+            footer .wrap {
+                flex-direction: column;
+                gap: .8rem;
+                text-align: center
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(min-width:861px) and (max-width:1100px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <button id="lightbox-close" aria-label="Close">&#x2715;</button>
+        <img id="lightbox-img" src="" alt="Preview" />
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">JAM<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <div class="nav-dot"><span class="dot-green"></span> Available for work</div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-noise"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+
+            <div class="hero-left">
+                <div class="hero-badge r"><span>BS Information Systems</span> · DNSC 2026</div>
+
+                <h1 class="hero-headline r d1">
+                    Design.<br>
+                    <span class="blue italic">Create.</span><br>
+                    Deliver.
+                </h1>
+
+                <p class="hero-sub r d2">
+                    I'm <strong>Jhoanna Abris Maslog</strong> — a freelance creative designer
+                    and BSIS graduate crafting visuals that are purposeful, polished, and built
+                    to make an impression.
+                </p>
+
+                <div class="hero-actions r d2">
+                    <a href="#about" class="btn-blue">
+                        Get in Touch
+                        <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                            <path d="M1 5.5h12M8 1l5.5 4.5L8 10" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="#skills" class="btn-ghost">See My Skills</a>
+                </div>
+            </div>
+
+            <div class="hero-right r d2">
+                <div class="photo-card">
+                    <div class="photo-card-top">
+                        <div class="card-dots"><span></span><span></span><span></span></div>
+                        <div class="card-label">Portfolio · 2026</div>
+                    </div>
+                    <div class="photo-img-wrap">
+                        <img src="img/me.png" alt="Jhoanna Abris Maslog" />
+                    </div>
+                    <div class="photo-card-bottom">
+                        <div>
+                            <div class="photo-name">Jhoanna A. Maslog</div>
+                            <div class="photo-role">Creative Designer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+        <div class="wrap">
+
+            <div class="two-col" style="margin-bottom:3rem">
+                <div>
+                    <p class="sec-label r">About</p>
+                    <h2 class="big r d1">
+                        Everything you need<br>to know about <span class="blue italic">me.</span>
+                    </h2>
+                </div>
+                <div class="r d2">
+                    <p style="font-size:.88rem;color:#555;line-height:1.9;margin-bottom:1.5rem">
+                        I'm a graduating Information Systems student at Davao del Norte State College in Carmen, Davao
+                        del Norte. My work sits at the intersection of technology and visual design — I use both to
+                        solve real communication problems.
+                    </p>
+                    <p style="font-size:.88rem;color:#555;line-height:1.9">
+                        Since late 2024 I've worked freelance, delivering graphic design, original illustration, and
+                        document design to clients with diverse requirements. I bring attention to detail, clear
+                        communication, and a genuine love of craft to everything I produce.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-rows r d3">
+                <div class="info-row">
+                    <span class="row-key">Facebook</span>
+                    <span class="row-val"><a href="https://www.facebook.com/johannavvxii">Jhoanna Maslog</a></span>
+                </div>
+                <div class="info-row">
+                    <span class="row-key">Email</span>
+                    <span class="row-val"><a
+                            href="mailto:maslog.jhoanna@dnsc.edu.ph">maslog.jhoanna@dnsc.edu.ph</a></span>
+                </div>
+            </div>
+
+            <div style="margin-top:1.5rem" class="r d4">
+                <a href="mailto:maslog.jhoanna@dnsc.edu.ph" class="btn-blue">
+                    Send a Message
+                    <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                        <path d="M1 5.5h12M8 1l5.5 4.5L8 10" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- SKILLS -->
+    <section id="skills" style="padding-top:4rem">
+        <div class="section-sm">
+            <div class="wrap">
+                <p class="sec-label r">Skills</p>
+                <h2 class="big r d1">What I <span class="blue italic">bring</span><br>to every project.</h2>
+            </div>
+        </div>
+
+        <div class="feature-row r">
+            <div class="wrap">
+                <div>
+                    <div class="feature-num">01</div>
+                    <h3 class="feat-title"><span class="blue">Graphic &amp;</span><br>UI/UX Design</h3>
+                    <p class="feat-body">Crafting interfaces and visual identities using Figma and Canva. From
+                        wireframes to pixel-perfect mockups, I design with the user's experience at the center of every
+                        decision.</p>
+                </div>
+                <div class="feat-visual r d1">
+                    <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="60" height="40" rx="2" fill="#111" stroke="#1e3a6e"
+                            stroke-width="1" />
+                        <rect x="30" y="28" width="40" height="4" rx="1" fill="#2563eb" opacity=".6" />
+                        <rect x="30" y="36" width="28" height="3" rx="1" fill="#333" />
+                        <rect x="30" y="43" width="32" height="3" rx="1" fill="#333" />
+                        <rect x="30" y="50" width="16" height="6" rx="1" fill="#2563eb" opacity=".8" />
+                        <rect x="100" y="15" width="60" height="90" rx="8" fill="#111" stroke="#1a1a1a"
+                            stroke-width="1" />
+                        <rect x="112" y="30" width="36" height="36" rx="4" fill="#0a1628" stroke="#1e3a6e"
+                            stroke-width="1" />
+                        <circle cx="130" cy="48" r="8" fill="#2563eb" opacity=".3" />
+                        <circle cx="130" cy="48" r="4" fill="#3b82f6" />
+                        <rect x="112" y="74" width="20" height="3" rx="1" fill="#333" />
+                        <rect x="112" y="80" width="36" height="3" rx="1" fill="#222" />
+                        <rect x="112" y="86" width="28" height="3" rx="1" fill="#222" />
+                        <line x1="80" y1="40" x2="100" y2="40" stroke="#1e3a6e" stroke-width="1"
+                            stroke-dasharray="3 2" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-row flip r">
+            <div class="wrap">
+                <div>
+                    <div class="feature-num">02</div>
+                    <h3 class="feat-title">Document<br><span class="blue">Preparation</span></h3>
+                    <p class="feat-body">Professional document design and precision editing. Reports, proposals, CVs,
+                        and print materials that are structured, readable, and visually refined.</p>
+                </div>
+                <div class="feat-visual r d1">
+                    <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="45" y="10" width="90" height="100" rx="2" fill="#0d0d0d" stroke="#1a1a1a"
+                            stroke-width="1" />
+                        <rect x="55" y="22" width="70" height="5" rx="1" fill="#2563eb" opacity=".7" />
+                        <rect x="55" y="32" width="50" height="3" rx="1" fill="#222" />
+                        <rect x="55" y="39" width="60" height="3" rx="1" fill="#1a1a1a" />
+                        <rect x="55" y="46" width="45" height="3" rx="1" fill="#1a1a1a" />
+                        <line x1="55" y1="56" x2="125" y2="56" stroke="#1a1a1a" stroke-width="1" />
+                        <rect x="55" y="62" width="30" height="3" rx="1" fill="#333" />
+                        <rect x="55" y="69" width="60" height="3" rx="1" fill="#1a1a1a" />
+                        <rect x="55" y="76" width="55" height="3" rx="1" fill="#1a1a1a" />
+                        <rect x="55" y="83" width="40" height="3" rx="1" fill="#1a1a1a" />
+                        <rect x="55" y="92" width="20" height="8" rx="1" fill="#2563eb" opacity=".8" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-row r">
+            <div class="wrap">
+                <div>
+                    <div class="feature-num">03</div>
+                    <h3 class="feat-title"><span class="blue">Creative</span><br>Illustration</h3>
+                    <p class="feat-body">Original digital illustrations built around client briefs. Expressive,
+                        detailed, and tailored — each piece speaks to its project's specific visual language and
+                        audience.</p>
+                </div>
+                <div class="feat-visual r d1">
+                    <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="90" cy="60" r="35" fill="#0a0a0a" stroke="#111" stroke-width="1" />
+                        <circle cx="90" cy="60" r="22" fill="none" stroke="#1e3a6e" stroke-width="1" />
+                        <circle cx="90" cy="60" r="8" fill="#2563eb" opacity=".3" />
+                        <circle cx="90" cy="60" r="4" fill="#3b82f6" />
+                        <line x1="55" y1="60" x2="68" y2="60" stroke="#2563eb" stroke-width="1" opacity=".5" />
+                        <line x1="112" y1="60" x2="125" y2="60" stroke="#2563eb" stroke-width="1" opacity=".5" />
+                        <line x1="90" y1="25" x2="90" y2="38" stroke="#2563eb" stroke-width="1" opacity=".5" />
+                        <line x1="90" y1="82" x2="90" y2="95" stroke="#2563eb" stroke-width="1" opacity=".5" />
+                        <circle cx="55" cy="60" r="3" fill="#1e3a6e" />
+                        <circle cx="125" cy="60" r="3" fill="#1e3a6e" />
+                        <circle cx="90" cy="25" r="3" fill="#1e3a6e" />
+                        <circle cx="90" cy="95" r="3" fill="#1e3a6e" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-row flip r">
+            <div class="wrap">
+                <div>
+                    <div class="feature-num">04</div>
+                    <h3 class="feat-title">Collaboration<br>&amp; <span class="blue">Comms</span></h3>
+                    <p class="feat-body">Clear client communication, dependable project coordination, and a
+                        collaborative approach that keeps every engagement smooth from brief to delivery.</p>
+                </div>
+                <div class="feat-visual r d1">
+                    <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="35" width="55" height="35" rx="4" fill="#0d0d0d" stroke="#1a1a1a"
+                            stroke-width="1" />
+                        <rect x="30" y="44" width="35" height="3" rx="1" fill="#2563eb" opacity=".5" />
+                        <rect x="30" y="51" width="25" height="3" rx="1" fill="#222" />
+                        <rect x="30" y="58" width="30" height="3" rx="1" fill="#222" />
+                        <path d="M20 70 L20 76 L26 70 Z" fill="#0d0d0d" stroke="#1a1a1a" stroke-width="1" />
+                        <rect x="105" y="20" width="55" height="35" rx="4" fill="#0a1628" stroke="#1e3a6e"
+                            stroke-width="1" />
+                        <rect x="115" y="29" width="35" height="3" rx="1" fill="#3b82f6" opacity=".7" />
+                        <rect x="115" y="36" width="25" height="3" rx="1" fill="#1e3a6e" />
+                        <rect x="115" y="43" width="30" height="3" rx="1" fill="#1e3a6e" />
+                        <path d="M160 55 L160 61 L154 55 Z" fill="#0a1628" stroke="#1e3a6e" stroke-width="1" />
+                        <rect x="105" y="70" width="55" height="30" rx="4" fill="#0d0d0d" stroke="#1a1a1a"
+                            stroke-width="1" />
+                        <rect x="115" y="79" width="20" height="3" rx="1" fill="#333" />
+                        <rect x="115" y="86" width="35" height="3" rx="1" fill="#222" />
+                        <line x1="75" y1="52" x2="105" y2="38" stroke="#1e3a6e" stroke-width="1"
+                            stroke-dasharray="3 2" />
+                        <line x1="75" y1="55" x2="105" y2="83" stroke="#1e3a6e" stroke-width="1"
+                            stroke-dasharray="3 2" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS ROW -->
+    <div class="tools-row">
+        <div class="wrap" style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center">
+            <span
+                style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#333;margin-right:.8rem;align-self:center">Toolset
+                →</span>
+            <span class="tool-pill">Figma</span>
+            <span class="tool-pill">Canva</span>
+            <span class="tool-pill">Adobe Photoshop</span>
+            <span class="tool-pill">Adobe Illustrator</span>
+            <span class="tool-pill">MS Office</span>
+            <span class="tool-pill">Google Workspace</span>
+            <span class="tool-pill">Typography</span>
+            <span class="tool-pill">Branding</span>
+            <span class="tool-pill">Layout Design</span>
+            <span class="tool-pill">Digital Illustration</span>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- DOCUMENTS -->
+    <section id="documents" class="section">
+        <div class="wrap">
+            <p class="sec-label r">Documents</p>
+            <h2 class="big r d1">Research &amp; <span class="blue italic">documents.</span></h2>
+            <p class="sec-body r d2" style="margin-bottom:2.5rem">Academic papers, reports, and strategic plans produced
+                throughout my Information Systems program.</p>
+
+            <div class="doc-list r d3">
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/1mCCA2pWr518mdxEYcHRTkruGm_4ouZxJTtYJs-UX_PI/edit?pli=1&tab=t.0#heading=h.ewom53atunh1"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Capstone</div>
+                    <div class="doc-content">
+                        <div class="doc-title">Web-Based Appointment Scheduling &amp; CRM System for HVAC Services</div>
+                        <div class="doc-sub">Capstone Project · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item" href="https://docs.google.com/document/d/1lPOy9p21irIFOmmzc2GJwEuIASeEAfQ6/edit"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Research</div>
+                    <div class="doc-content">
+                        <div class="doc-title">Quantifying the Relationship of College Students' Perception and Usage of
+                            AI in Higher Education</div>
+                        <div class="doc-sub">Research Paper · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/1700tYCD3Pm1G5gbdV9QDB5AJWyjfHCMHPBFpYKqZTk/edit?tab=t.0"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Planning</div>
+                    <div class="doc-content">
+                        <div class="doc-title">EA Document</div>
+                        <div class="doc-sub">Enterprise Architecture · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/11mwa_tbo1nnvEtTmXdV4bO5JffzLiPrgvSDzowuR-g/edit?tab=t.0"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Planning</div>
+                    <div class="doc-content">
+                        <div class="doc-title">BPM Plan</div>
+                        <div class="doc-sub">Business Process Management · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item" href="https://docs.google.com/document/d/10NPdzuO5u4NXAL73Fk3u1k5jiaLqiEe/edit"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Case Study</div>
+                    <div class="doc-content">
+                        <div class="doc-title">Revitalizing Transactions at J Dano Pharmacy with Inventory Management
+                            System</div>
+                        <div class="doc-sub">IMS Case Study · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/1hK03LAEdsJ_s34QDHD1438EFG7Kpe6FcrTmOfSdwq4I/edit?tab=t.0"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Strategic</div>
+                    <div class="doc-content">
+                        <div class="doc-title">Information Systems Strategic Plan</div>
+                        <div class="doc-sub">ISSP · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/1NDHzbMANrXBQTO3E3Y3_s6CjU2tS9GQoENdaKJVO8rU/edit?tab=t.0"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Research</div>
+                    <div class="doc-content">
+                        <div class="doc-title">Market Research Plan</div>
+                        <div class="doc-sub">Market Analysis · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+                <a class="doc-item"
+                    href="https://docs.google.com/document/d/1Z2I_mffpzbFocvBjoc0aSxkbXReMMr6pHv3jjoFDWn8/edit?tab=t.0"
+                    target="_blank" rel="noopener">
+                    <div class="doc-tag">Audit</div>
+                    <div class="doc-content">
+                        <div class="doc-title">IT Audit &amp; Controls — Audit Report for ICSA Voting System</div>
+                        <div class="doc-sub">IT Audit · Google Docs</div>
+                    </div>
+                    <div class="doc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></div>
+                </a>
+
+            </div>
+
+            <!-- ACHIEVEMENTS -->
+            <div class="r d3" style="margin-top:3rem">
+                <p class="sec-label">Achievements</p>
+                <h2 class="big" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:.6rem">Awards &amp;
+                    <span class="blue italic">recognition.</span>
+                </h2>
+                <p class="sec-body" style="margin-bottom:0">Competition placements and academic honors earned throughout
+                    my college journey.</p>
+
+                <div class="achieve-grid">
+
+                    <div class="achieve-card" data-img="img/achievements/national-book-month-impromptu-speech-2022.jpg">
+                        <div class="achieve-thumb">
+                            <img src="img/achievements/national-book-month-impromptu-speech-2022.jpg"
+                                alt="Impromptu Speech 1st Placer" />
+                        </div>
+                        <div class="achieve-info">
+                            <div class="achieve-title">Impromptu Speech — 1st Place</div>
+                            <div class="achieve-meta">National Book Month · DNSC · 2022</div>
+                        </div>
+                    </div>
+
+                    <div class="achieve-card" data-img="img/achievements/psits-2025-word-search.jpg">
+                        <div class="achieve-thumb">
+                            <img src="img/achievements/psits-2025-word-search.jpg"
+                                alt="PSITS 2025 Word Search 4th Place" />
+                        </div>
+                        <div class="achieve-info">
+                            <div class="achieve-title">Word Search — 4th Place</div>
+                            <div class="achieve-meta">PSITS Region 11 Festival of Talents · 2025</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CERTIFICATIONS -->
+            <div class="r d4" style="margin-top:3rem">
+                <p class="sec-label">Certifications</p>
+                <h2 class="big" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:.6rem">Trainings &amp;
+                    <span class="blue italic">certifications.</span>
+                </h2>
+                <p class="sec-body" style="margin-bottom:0">Certificates earned from courses, trainings, and events
+                    completed throughout my academic journey. Click any certificate to view it full size.</p>
+
+                <div class="cert-grid">
+
+                    <div class="cert-card" data-img="img/certs/capstone-certificate-of-completion.jpg">
+                        <div class="cert-thumb"><img src="img/certs/capstone-certificate-of-completion.jpg"
+                                alt="Capstone Project Certificate of Completion" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Capstone Project — Certificate of Completion</div>
+                            <div class="cert-issuer">DNSC · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/capstone-certificate-of-participation.jpg">
+                        <div class="cert-thumb"><img src="img/certs/capstone-certificate-of-participation.jpg"
+                                alt="Capstone Project Exhibit Certificate of Participation" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">BSIT &amp; BSIS Capstone Project Exhibit — Certificate of
+                                Participation</div>
+                            <div class="cert-issuer">DNSC · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/dict-canva-ai-graphics-design.jpg">
+                        <div class="cert-thumb"><img src="img/certs/dict-canva-ai-graphics-design.jpg"
+                                alt="Graphics Design using AI-Powered Canva Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Graphics Design using AI-Powered Canva</div>
+                            <div class="cert-issuer">DICT Region XI · 2025</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/canva-work-smarter-with-ai.jpg">
+                        <div class="cert-thumb"><img src="img/certs/canva-work-smarter-with-ai.jpg"
+                                alt="Work Smarter with AI Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Work Smarter with AI</div>
+                            <div class="cert-issuer">Canva Design School · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/cursa-it-fundamentals.jpg">
+                        <div class="cert-thumb"><img src="img/certs/cursa-it-fundamentals.jpg"
+                                alt="IT Fundamentals Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">IT Fundamentals with David Flom</div>
+                            <div class="cert-issuer">Cursa · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/cursa-ux-ui-fundamentals.jpg">
+                        <div class="cert-thumb"><img src="img/certs/cursa-ux-ui-fundamentals.jpg"
+                                alt="UX/UI Fundamentals Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Basic &amp; Advanced Knowledge of UX/UI</div>
+                            <div class="cert-issuer">Cursa · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/python-essentials-1.jpg">
+                        <div class="cert-thumb"><img src="img/certs/python-essentials-1.jpg"
+                                alt="Python Essentials 1 Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Python Essentials 1</div>
+                            <div class="cert-issuer">Cisco Networking Academy · 2025</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/python-essentials-2.jpg">
+                        <div class="cert-thumb"><img src="img/certs/python-essentials-2.jpg"
+                                alt="Python Essentials 2 Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Python Essentials 2</div>
+                            <div class="cert-issuer">Cisco Networking Academy · 2025</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/tesda-introduction-to-css.jpg">
+                        <div class="cert-thumb"><img src="img/certs/tesda-introduction-to-css.jpg"
+                                alt="Introduction to CSS Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Introduction to CSS</div>
+                            <div class="cert-issuer">TESDA Online Program · 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-img="img/certs/tesda-introduction-to-visual-graphic-design.jpg">
+                        <div class="cert-thumb"><img src="img/certs/tesda-introduction-to-visual-graphic-design.jpg"
+                                alt="Introduction to Visual Graphic Design Certificate" /></div>
+                        <div class="cert-info">
+                            <div class="cert-title">Introduction to Visual Graphic Design</div>
+                            <div class="cert-issuer">TESDA Online Program · 2026</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+        <div class="wrap">
+            <p class="sec-label r">Projects</p>
+            <h2 class="big r d1">Selected <span class="blue italic">projects.</span></h2>
+            <p class="sec-body r d2" style="margin-bottom:0">A look at some of the visual work I've crafted across
+                branding, UI, and illustration.</p>
+
+            <div class="project-grid">
+
+                <div class="project-card r d1">
+                    <div class="project-thumb">
+                        <span class="proj-tag">UI/UX</span>
+                        <img src="img/rizzq.png" alt="RizzQ Prototype preview" />
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">RizzQ Prototype</div>
+                        <div class="project-desc">Interactive Figma prototype exploring a social confidence app —
+                            screens, flows, and micro-interactions designed end-to-end.</div>
+                        <div class="project-footer">
+                            <div class="project-tools"><span class="project-tool">Figma</span></div>
+                            <a class="project-link"
+                                href="https://www.figma.com/design/2uUvOXfcqPwXM29bcex05d/RizzQ-Prototype?node-id=0-1&t=G17ChAPsgNHVisWC-1"
+                                target="_blank" rel="noopener">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card r d2">
+                    <div class="project-thumb">
+                        <span class="proj-tag">Web Design</span>
+                        <img src="img/pnwx.png" alt="PNWX Website Redesign preview" />
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">PNWX Website Redesign</div>
+                        <div class="project-desc">Full website redesign concept for PNWX — updated layout, visual
+                            hierarchy, and brand-aligned UI components.</div>
+                        <div class="project-footer">
+                            <div class="project-tools"><span class="project-tool">Figma</span></div>
+                            <a class="project-link"
+                                href="https://www.figma.com/design/ynk8Q9xH0DjNIeinHrbfn6/PNWX-Website-Redesign?t=PysGZ2hkt7ZkXG6u-0"
+                                target="_blank" rel="noopener">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card r d3">
+                    <div class="project-thumb">
+                        <span class="proj-tag">App Design</span>
+                        <img src="img/payment-tracker.png" alt="Class Payment Tracker preview" />
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Class Payment Tracker</div>
+                        <div class="project-desc">A clean, functional Figma design for tracking class payments —
+                            organized dashboard, status indicators, and simple data entry flows.</div>
+                        <div class="project-footer">
+                            <div class="project-tools"><span class="project-tool">Figma</span></div>
+                            <a class="project-link"
+                                href="https://www.figma.com/design/kIiIXWykuL2jgDijwOHC98/CLASS-PAYMENT-TRACKER?t=bAHh5G7hpyCvnISA-0"
+                                target="_blank" rel="noopener">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card r d1">
+                    <div class="project-thumb">
+                        <span class="proj-tag">App Design</span>
+                        <img src="img/sodukool.png" alt="Sodukool preview" />
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Sodukool</div>
+                        <div class="project-desc">Figma design for Sodukool — a school-focused app with intuitive
+                            navigation, structured content layouts, and a friendly visual style.</div>
+                        <div class="project-footer">
+                            <div class="project-tools"><span class="project-tool">Figma</span></div>
+                            <a class="project-link"
+                                href="https://www.figma.com/design/FCwwoVeasn0Lxvl2Le8t6s/SODUKOOL?node-id=0-1&p=f&t=Uck0vMzR87hy2T1I-0"
+                                target="_blank" rel="noopener">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+            <span class="ft-logo">JAM<span>.</span></span>
+            <span class="ft-copy">© 2025 Jhoanna Abris Maslog. All rights reserved.</span>
+            <div class="ft-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#documents">Documents</a>
+                <a href="#projects">Projects</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll style
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('open');
+            mobileMenu.style.display = 'block';
+            mobileMenu.getBoundingClientRect();
+            mobileMenu.classList.toggle('open', isOpen);
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                setTimeout(() => { mobileMenu.style.display = 'none'; }, 260);
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = ['hero', 'about', 'skills', 'documents', 'projects'];
+        const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+        function setActive() {
+            const scrollY = window.scrollY + 80;
+            let current = '';
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const el = document.getElementById(sections[i]);
+                if (el && el.offsetTop <= scrollY) { current = sections[i]; break; }
+            }
+            navLinks.forEach(a => {
+                const href = a.getAttribute('href').replace('#', '');
+                a.classList.toggle('active', href === current);
+            });
+        }
+        window.addEventListener('scroll', setActive);
+        setActive();
+
+        // Reveal on scroll
+        const rs = document.querySelectorAll('.r');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.08 });
+        rs.forEach(el => obs.observe(el));
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        document.querySelectorAll('.cert-card, .achieve-card').forEach(card => {
+            card.addEventListener('click', () => {
+                lightboxImg.src = card.dataset.img;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+
+</html>
